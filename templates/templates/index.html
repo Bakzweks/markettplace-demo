@@ -1,1 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Маркетплейс</title>
+</head>
+<body>
+    <h1>Добро пожаловать в Маркетплейс!</h1>
 
+    {% if "user" in session %}
+        <p>Вы вошли как: {{ session["user"][0] }}</p>
+        <a href="/add">Добавить товар</a>
+    {% else %}
+        <a href="/login">Войти</a> | <a href="/register">Регистрация</a>
+    {% endif %}
+
+    <h2>Товары:</h2>
+    {% for product in products %}
+        <div>
+            <h3>{{ product.title }}</h3>
+            <p>Цена: {{ product.price }}</p>
+            <p>{{ product.description }}</p>
+        </div>
+    {% else %}
+        <p>Нет товаров.</p>
+    {% endfor %}
+</body>
+</html>
